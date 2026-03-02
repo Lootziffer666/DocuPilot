@@ -7,6 +7,7 @@ Dependency-light prototype for living documentation workflows.
 - CLI scanner for inventory matrix + modular schedule (`src/docupilot_cli.py`)
 - Drive Auto-Sync helper (`src/drive_sync.py`) using `rclone` (no Python dependencies)
 - Minimalistische GUI mit Tabs, Icons, Hover-Labels und klarer Struktur (`ui/`)
+- Android-App-Shell „DocuPilot Pharos" als leichtgewichtiger WebView-Container (`android/`)
 
 ## Run CLI scanner
 
@@ -39,3 +40,18 @@ python3 -m http.server 4173
 ```
 
 Then open `http://localhost:4173/ui/`.
+
+## Android app (DocuPilot Pharos)
+
+Voraussetzungen: Android Studio Iguana oder neuer (AGP 8.5+, JDK 17).
+
+1. Projekt in Android Studio öffnen: `android/`
+2. Gradle Sync ausführen
+3. App auf Gerät oder Emulator starten
+
+Optional via CLI (wenn Android SDK lokal konfiguriert ist):
+
+```bash
+cd android
+./gradlew assembleDebug
+```
