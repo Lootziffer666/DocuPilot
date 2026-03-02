@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DocuPilot UI</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar glass">
+        <div class="brand">
+          <div class="brand-mark">◌</div>
+          <div>
+            <h1>DocuPilot</h1>
+            <p>Schedule Documentation Kit</p>
+          </div>
+        </div>
+
+        <nav class="tab-nav" aria-label="Hauptnavigation">
+          <button class="tab-btn active" data-tab="overview" title="Projektübersicht">
+            <span class="icon" aria-hidden="true">⌂</span>
+            <span class="label">Overview</span>
+          </button>
+          <button class="tab-btn" data-tab="ingest" title="Dokumente importieren und analysieren">
+            <span class="icon" aria-hidden="true">⇪</span>
+            <span class="label">Ingest</span>
+          </button>
+          <button class="tab-btn" data-tab="rules" title="Regeln, PRD und Matrizen">
+            <span class="icon" aria-hidden="true">⚙</span>
+            <span class="label">Rules</span>
+          </button>
+          <button class="tab-btn" data-tab="changes" title="Änderungen / Deltas">
+            <span class="icon" aria-hidden="true">∆</span>
+            <span class="label">Changes</span>
+          </button>
+          <button class="tab-btn" data-tab="settings" title="API und Integrationen">
+            <span class="icon" aria-hidden="true">☍</span>
+            <span class="label">Settings</span>
+          </button>
+        </nav>
+      </aside>
+
+      <main class="main-panel">
+        <header class="topbar glass">
+          <div class="left-hero">
+            <span class="close">✕</span>
+            <h2 id="panel-title">Projektübersicht</h2>
+          </div>
+          <div class="status-pill">3 Screens · Dark/Orange</div>
+        </header>
+
+        <section id="overview" class="tab-panel active">
+          <article class="showcase">
+            <div class="showcase-head">
+              <p>Schedule Mobile UI Kit</p>
+              <small>Referenzstil übertragen auf DocuPilot</small>
+            </div>
+            <div class="phone-row">
+              <div class="phone-card light">
+                <div class="phone-top">
+                  <span class="tab active">Today</span>
+                  <span class="tab">Calendar</span>
+                </div>
+                <h3>Check your schedule today</h3>
+                <ul>
+                  <li><b>Vollständiger Sync</b><span>09:30</span></li>
+                  <li><b>PRD Review</b><span>10:30</span></li>
+                  <li><b>Client Upload Batch</b><span>11:00</span></li>
+                </ul>
+              </div>
+
+              <div class="phone-card dark">
+                <div class="phone-top">
+                  <span class="tab active">Today</span>
+                  <span class="tab">Calendar</span>
+                </div>
+                <h3>Delta timeline</h3>
+                <ul>
+                  <li><b>+17 Dateien</b><span>08:30</span></li>
+                  <li><b>~5 geändert</b><span>09:45</span></li>
+                  <li><b>-2 entfernt</b><span>13:00</span></li>
+                </ul>
+              </div>
+
+              <div class="phone-card detail">
+                <h4>Meet Rule-Matrix Sync</h4>
+                <p>Priorität hoch · Falko/Litkey Konfliktprüfung</p>
+                <div class="route"></div>
+                <div class="actions">
+                  <button>✓</button>
+                  <button class="ghost">✎</button>
+                  <button class="ghost">🗑</button>
+                </div>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <section id="ingest" class="tab-panel">
+          <div class="grid two-col">
+            <article class="card glass">
+              <h3>Datei-Upload & Analyse</h3>
+              <label class="dropzone" for="file-input">
+                <input id="file-input" type="file" multiple />
+                <span>Dateien hier ablegen oder klicken</span>
+                <small>Unterstützt: .md, .txt, .csv, .pdf</small>
+              </label>
+            </article>
+            <article class="card glass">
+              <h3>Projektzuordnung (mit Rückfrage)</h3>
+              <div class="question-box">
+                <p>Vorschlag: Zu <strong>Projekt „Korpus-Normalisierung“</strong> zuordnen?</p>
+                <div class="actions">
+                  <button>Zuordnen</button>
+                  <button class="ghost">Neues Projekt anlegen</button>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section id="rules" class="tab-panel">
+          <article class="card glass">
+            <h3>Regel- und Feature-Matrix</h3>
+            <table>
+              <thead>
+                <tr><th>Cluster</th><th>Quelle</th><th>Status</th><th>Konflikt</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Orthografie</td><td>Litkey</td><td>Aktiv</td><td>Nein</td></tr>
+                <tr><td>Syntax</td><td>Falko</td><td>Review</td><td>Ja</td></tr>
+                <tr><td>Business Rules</td><td>PRD v3</td><td>Aktiv</td><td>Nein</td></tr>
+              </tbody>
+            </table>
+          </article>
+        </section>
+
+        <section id="changes" class="tab-panel">
+          <article class="card glass">
+            <h3>Delta-Log</h3>
+            <ul class="timeline">
+              <li><b>+3 Dateien</b> im Cluster „paper_prep“</li>
+              <li><b>~2 Dateien geändert</b> im Cluster „business_rules“</li>
+              <li><b>-1 Datei entfernt</b> (alte Entwurfsnotiz)</li>
+            </ul>
+          </article>
+        </section>
+
+        <section id="settings" class="tab-panel">
+          <div class="grid two-col">
+            <article class="card glass">
+              <h3>LLM-Provider</h3>
+              <label>Perplexity API Key<input type="password" placeholder="pplx-..." /></label>
+              <label>Gemini API Key<input type="password" placeholder="AIza..." /></label>
+            </article>
+            <article class="card glass">
+              <h3>Integrationen</h3>
+              <label class="inline" title="Aktiviert den kontinuierlichen Abgleich mit Google Drive"><input id="drive-sync-toggle" type="checkbox" /> Drive Auto-Sync aktivieren</label>
+              <label>Drive Projektordner<input id="drive-project-folder" type="text" placeholder="korpus-normalisierung" /></label>
+              <label>Sync-Intervall (Sekunden)<input id="drive-interval" type="number" min="30" value="300" /></label>
+              <div class="sync-command" id="sync-command">python3 src/drive_sync.py --project-folder korpus-normalisierung --watch</div>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
