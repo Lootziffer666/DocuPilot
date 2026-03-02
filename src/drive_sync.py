@@ -107,10 +107,25 @@ def run_rclone_sync(cfg: SyncConfig) -> None:
     subprocess.run(cmd, check=True)
 
 
+def target_identity(cfg: SyncConfig) -> dict[str, str]:
+    return {
+        'remote': cfg.remote,
+        'project_folder': cfg.project_folder,
+    }
+
+
+def should_reuse_manifest(state: dict, cfg: SyncConfig) -> bool:
+    return (
+        isinstance(state.get('manifest'), dict)
+        and state.get('remote') == cfg.remote
+        and state.get('project_folder') == cfg.project_folder
+    )
+
+
 def sync_once(cfg: SyncConfig) -> int:
     state = load_state()
     local_manifest = build_local_manifest(cfg.local_root)
-    previous = state.get('manifest', {})
+    previous = state.get('manifest', {}) if should_reuse_manifest(state, cfg) else {}
     delta = compute_delta(previous, local_manifest)
 
     total_delta = len(delta['created']) + len(delta['changed']) + len(delta['deleted'])
@@ -121,12 +136,15 @@ def sync_once(cfg: SyncConfig) -> int:
     print(f"Detected {len(delta['created'])} new, {len(delta['changed'])} changed, {len(delta['deleted'])} deleted files.")
     run_rclone_sync(cfg)
 
+    if cfg.dry_run:
+        print('Dry-run enabled; local sync state was not updated.')
+        return 0
+
     state.update(
         {
             'manifest': local_manifest,
             'last_sync_epoch': int(time.time()),
-            'remote': cfg.remote,
-            'project_folder': cfg.project_folder,
+            **target_identity(cfg),
             'last_delta': delta,
         }
     )
