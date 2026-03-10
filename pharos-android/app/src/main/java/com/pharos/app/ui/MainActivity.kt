@@ -3,6 +3,7 @@ package com.pharos.app.ui
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
@@ -11,7 +12,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -24,7 +24,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.pharos.app.PharosApp
 import com.pharos.app.ui.navigation.Screen
 import com.pharos.app.ui.navigation.bottomNavItems
 import com.pharos.app.ui.screen.dashboard.DashboardScreen
@@ -43,17 +42,18 @@ import com.pharos.app.ui.theme.PharosTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         setContent {
             PharosTheme {
-                PharosApp()
+                PharosMainContent()
             }
         }
     }
 }
 
 @Composable
-private fun PharosApp() {
+private fun PharosMainContent() {
     val navController = rememberNavController()
 
     Scaffold(
