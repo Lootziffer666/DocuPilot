@@ -1,6 +1,7 @@
 package com.pharos.app
 
 import android.app.Application
+import android.util.Log
 import com.tom_roush.pdfbox.android.PDFBoxResourceLoader
 
 class PharosApp : Application() {
@@ -10,9 +11,15 @@ class PharosApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        PDFBoxResourceLoader.init(this)
-        appContainer = AppContainer(this)
         instance = this
+
+        try {
+            PDFBoxResourceLoader.init(this)
+        } catch (e: Exception) {
+            Log.w("PharosApp", "PDFBox init failed - PDF support may be unavailable", e)
+        }
+
+        appContainer = AppContainer(this)
     }
 
     companion object {
